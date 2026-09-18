@@ -6,6 +6,7 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import repository.Content;
 import repository.ParagraphStyles;
+import repository.WordStyles;
 
 public class DocContentGen {
     XWPFDocument doc;
@@ -15,14 +16,20 @@ public class DocContentGen {
     }
 
     public void addContent(Content content) {
-        ParagraphStyles paragraphStyles = new ParagraphStyles();
+        WordStyles wordStyles = new WordStyles();
+        WordStylesGathering styles = new WordStylesGathering(doc, wordStyles);
+        styles.applyStylesIntoDocument();
+        // ParagraphStyles paragraphStyles = new ParagraphStyles();
         content.generateContent().getAllParagraphs().forEach(p -> {
-                    XWPFParagraph newParagraph = doc.createParagraph();
-                    ParagraphStyle paragraphStyle = paragraphStyles.getParagraphStyles().get(p.getStyleParagraphId());
-                    ParagraphDesigner.applyParagraphStyle(newParagraph, paragraphStyle);
-                    XWPFRun run = newParagraph.createRun();
-                    run.setText(p.getText());
-                }
-        );
+            XWPFParagraph newParagraph = doc.createParagraph();
+            String pStyle = p.getStyleParagraphId();
+            newParagraph.setStyle(pStyle);
+
+            // ParagraphStyle paragraphStyle =
+            // paragraphStyles.getParagraphStyles().get(p.getStyleParagraphId());
+            // ParagraphDesigner.applyParagraphStyle(newParagraph, paragraphStyle);
+            XWPFRun run = newParagraph.createRun();
+            run.setText(p.getText());
+        });
     }
 }

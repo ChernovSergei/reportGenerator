@@ -1,34 +1,105 @@
 package model;
 
-import org.apache.poi.xwpf.usermodel.XWPFStyle;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
-
-import java.math.BigInteger;
+import java.util.Objects;
 
 public class WordStyle {
-    private final CTStyle style;
-    private CTHpsMeasure textSize;
-    private CTFonts fontFamily;
-    private CTColor fontColor;
-    private CTOnOff bold;
-    private CTOnOff italic;
-    private CTUnderline underlinePattern;
-    private CTOnOff strike;
+    private String styleName;
+    private Integer textSize;
+    private String fontFamily;
+    private String fontColor;
+    private Boolean bold;
+    private Boolean italic;
+    private LineType lineType;
+    private Boolean strike;
 
-    public WordStyle(XWPFStyle style) {
-        this.style = style.getCTStyle();
+    public WordStyle(String styleName,
+            Integer textSize,
+            String fontFamily,
+            String fontColor,
+            Boolean bold,
+            Boolean italic,
+            LineType lineType,
+            Boolean strike) {
+        this.styleName = styleName;
+        this.textSize = textSize;
+        this.fontFamily = fontFamily;
+        this.fontColor = fontColor;
+        this.bold = bold;
+        this.italic = italic;
+        this.lineType = lineType;
+        this.strike = strike;
     }
 
-    private CTHpsMeasure getOrCreateSize(CTRPr runProperties) {
-        if (runProperties.getSzList().isEmpty()) {
-            return runProperties.addNewSz();
-        }
-        return runProperties.getSzList().get(0);
+    public String getStyleName() {
+        return styleName;
     }
 
-    public void modifyStyle(ParagraphStyle paragraphStyle, TextStyle textStyle) {
-        CTRPr runProperties = style.isSetRPr() ? style.getRPr() : style.addNewRPr();
-        textSize = getOrCreateSize(runProperties);
-        textSize.setVal(BigInteger.valueOf(textStyle.getFontSize()));
+    public Integer getTextSize() {
+        return textSize;
+    }
+
+    public void setTextSize(Integer textSize) {
+        this.textSize = textSize;
+    }
+
+    public String getFontFamily() {
+        return fontFamily;
+    }
+
+    public void setFontFamily(String fontFamily) {
+        this.fontFamily = fontFamily;
+    }
+
+    public String getFontColor() {
+        return fontColor;
+    }
+
+    public void setFontColor(String fontColor) {
+        this.fontColor = fontColor;
+    }
+
+    public Boolean getBold() {
+        return bold;
+    }
+
+    public void setBold(Boolean bold) {
+        this.bold = bold;
+    }
+
+    public Boolean getItalic() {
+        return italic;
+    }
+
+    public void setItalic(Boolean italic) {
+        this.italic = italic;
+    }
+
+    public LineType getLineType() {
+        return lineType;
+    }
+
+    public void setLineType(LineType lineType) {
+        this.lineType = lineType;
+    }
+
+    public Boolean getStrike() {
+        return strike;
+    }
+
+    public void setStrike(Boolean strike) {
+        this.strike = strike;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass())
+            return false;
+        WordStyle wordStyle = (WordStyle) o;
+        return Objects.equals(styleName, wordStyle.styleName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(styleName);
     }
 }

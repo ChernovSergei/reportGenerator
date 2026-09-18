@@ -8,9 +8,9 @@ public class Content {
 
     public Paragraphs generateContent() {
         paragraphs.addParagraphToLast(
-                new Paragraph("Machinery management",1));
+                new Paragraph("Machinery management", "Normal"));
         paragraphs.addParagraphToLast(
-                new Paragraph("services", 1));
+                new Paragraph("services solar", "Normal"));
         return paragraphs;
     }
 }

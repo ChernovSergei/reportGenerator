@@ -3,9 +3,9 @@ package model;
 public class Paragraph {
 
     private String text;
-    private int styleParagraphId;
+    private String styleParagraphId;
 
-    public Paragraph(String text, int styleParagraphId) {
+    public Paragraph(String text, String styleParagraphId) {
         this.text = text;
         this.styleParagraphId = styleParagraphId;
     }
@@ -18,11 +18,11 @@ public class Paragraph {
         this.text = text;
     }
 
-    public int getStyleParagraphId() {
+    public String getStyleParagraphId() {
         return styleParagraphId;
     }
 
-    public void setStyleParagraphId(int styleParagraphId) {
+    public void setStyleParagraphId(String styleParagraphId) {
         this.styleParagraphId = styleParagraphId;
     }
 }
