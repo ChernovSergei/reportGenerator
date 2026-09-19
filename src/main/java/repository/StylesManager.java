@@ -2,10 +2,11 @@ package repository;
 
 import model.FontFamily;
 import model.LineType;
-import model.WordStyleBuilder;
+import model.StyleBuilder;
 
-public class WordStylesManager {
-    public static void createNormalStyle(String styleName, WordStyleBuilder builder) {
+public class StylesManager {
+    public static void createNormalStyle(String styleName, StyleBuilder builder) {
+        builder.setId("Normal");
         builder.setStyleName("Normal");
         builder.setFontFamily(FontFamily.TAHOMA.getName());
         builder.setTextSize(12);

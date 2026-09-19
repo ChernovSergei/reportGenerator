@@ -1,11 +1,13 @@
-import service.DocCreator;
+import service.Document;
 
 public class Main {
-    //Comment
+    // Comment
+    // TODO: Pefrom refactoring
+    // TODO: Remove unused classes
     public static void main(String[] args) {
-        DocCreator docCreator = new DocCreator();
+        Document document = new Document();
         try {
-            docCreator.createDoc("simple.docx");
+            document.createDocument("simple.docx");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

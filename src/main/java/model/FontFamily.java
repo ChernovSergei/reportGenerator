@@ -15,7 +15,7 @@ public enum FontFamily {
     private final String name;
 
     FontFamily(String name) {
-       this.name = name;
+        this.name = name;
     }
 
     public String getName() {

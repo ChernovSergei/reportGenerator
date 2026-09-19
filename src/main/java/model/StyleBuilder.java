@@ -1,6 +1,7 @@
 package model;
 
-public class WordStyleBuilder {
+public class StyleBuilder {
+    private String id;
     private String styleName;
     private Integer textSize;
     private String fontFamily;
@@ -9,6 +10,10 @@ public class WordStyleBuilder {
     private Boolean italic;
     private LineType lineType;
     private Boolean strike;
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public void setStyleName(String styleName) {
         this.styleName = styleName;
@@ -42,8 +47,9 @@ public class WordStyleBuilder {
         this.strike = strike;
     }
 
-    public WordStyle getResult() {
-        return new WordStyle(styleName,
+    public Style getResult() {
+        return new Style(id,
+                styleName,
                 textSize,
                 fontFamily,
                 fontColor,
